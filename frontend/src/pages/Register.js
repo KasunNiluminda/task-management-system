@@ -5,12 +5,10 @@ import API_BASE_URL from "../../src/config/config";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
     email: "",
-    phone_number: "",
+    username: "",
     password: "",
-    confirmPassword: "",
+    role: "",
   });
 
   const [error, setError] = useState(null);
@@ -56,13 +54,7 @@ const RegisterForm = () => {
       width: "600px",
       maxWidth: "90%",
     },
-    logo: {
-      color: "#e64a19",
-      fontSize: "28px",
-      fontWeight: "bold",
-      marginBottom: "24px",
-      textAlign: "center",
-    },
+
     heading: {
       fontSize: "24px",
       fontWeight: 500,
@@ -105,12 +97,7 @@ const RegisterForm = () => {
       padding: "16px",
       width: "100%",
     },
-    error: {
-      fontSize: "12px",
-      color: "red",
-      marginTop: "0px",
-      marginBottom: "16px",
-    },
+
     button: {
       marginTop: "20px",
       backgroundColor: "blue",
@@ -136,44 +123,19 @@ const RegisterForm = () => {
   return (
     <div style={styles.container}>
       <div style={styles.formBox}>
-        <h1 className="logo">
-         T.M.S
-        </h1>
+        <h1 className="logo">T.M.S</h1>
         <h2 style={styles.heading}>Register</h2>
 
         <form onSubmit={handleSubmit}>
           <label style={styles.nameLabel}></label>
-          <div style={styles.inputGroup2}>
-            <div style={styles.labelText}>
-              <label style={styles.nameLabel}>Your name *</label>
-            </div>
-            <div style={styles.labelText}></div>
-          </div>
-          <div style={styles.inputGroup}>
-            <input
-              type="text"
-              name="first_name"
-              placeholder="First name"
-              value={formData.first_name}
-              onChange={handleChange}
-              style={styles.input}
-            />
-            <input
-              type="text"
-              name="last_name"
-              placeholder="Last name"
-              value={formData.last_name}
-              onChange={handleChange}
-              style={styles.input}
-            />
-          </div>
+
           <div style={styles.inputGroup2}>
             <div style={styles.labelText}>
               <label style={styles.nameLabel}>Email *</label>
             </div>
 
             <div style={styles.labelText}>
-              <label style={styles.nameLabel}>Phone Number *</label>
+              <label style={styles.nameLabel}>Username *</label>
             </div>
           </div>
           <div style={styles.inputGroup}>
@@ -186,9 +148,9 @@ const RegisterForm = () => {
               style={styles.input}
             />
             <input
-              type="tel"
-              name="phone_number"
-              placeholder="Phone number"
+              type="text"
+              name="username"
+              placeholder="username"
               value={formData.phone_number}
               onChange={handleChange}
               style={styles.input}
@@ -201,7 +163,7 @@ const RegisterForm = () => {
             </div>
 
             <div style={styles.labelText}>
-              <label style={styles.nameLabel}>Confirm Password *</label>
+              <label style={styles.nameLabel}>Member Role *</label>
             </div>
           </div>
           <div style={styles.inputGroup}>
@@ -215,46 +177,13 @@ const RegisterForm = () => {
             />
 
             <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
+              type="text"
+              name="Member Role"
+              placeholder="Member Role"
+              value={formData.role}
               onChange={handleChange}
-              style={{
-                ...styles.input,
-                border:
-                  formData.confirmPassword &&
-                  formData.password !== formData.confirmPassword
-                    ? "1px solid red"
-                    : "1px solid #ddd",
-
-                color:
-                  formData.password !== formData.confirmPassword
-                    ? "red"
-                    : "#333",
-                // Apply red border color when input is focused
-                borderColor:
-                  formData.confirmPassword &&
-                  formData.password !== formData.confirmPassword
-                    ? "red"
-                    : "#ddd",
-                outline:
-                  formData.confirmPassword &&
-                  formData.password !== formData.confirmPassword
-                    ? "none"
-                    : "", // Conditionally apply outline property
-              }}
+              style={styles.input}
             />
-          </div>
-
-          <div style={{ ...styles.inputGroup, marginTop: "-15px" }}>
-            <div style={styles.labelText}></div>
-            <div style={styles.labelText}>
-              {formData.confirmPassword &&
-                formData.password !== formData.confirmPassword && (
-                  <p style={styles.error}>The passwords do not match.</p>
-                )}
-            </div>
           </div>
 
           <button type="submit" style={styles.button}>
