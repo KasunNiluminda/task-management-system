@@ -30,9 +30,12 @@ const Navbar = () => {
         <li>
           <Link to="/home">HOME</Link>
         </li>
-        <li>
-          <Link to="/favourite">TASKS</Link>
-        </li>
+        {localStorage.getItem("role") === "admin" &&
+          localStorage.getItem("token") !== null && (
+            <li>
+              <Link to="/createTask">ADD TASKS</Link>
+            </li>
+          )}
         {/* <li>
           <Link to="/login">Login</Link>
         </li> */}

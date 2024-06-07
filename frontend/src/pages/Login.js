@@ -29,9 +29,13 @@ const LoginForm = () => {
         username,
         password,
       });
-      const { token } = response.data;
+      const { token, role,memberId } = response.data;
       // Store token in local storage
       localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
+      localStorage.setItem("memberId", memberId);
+
+
       // Redirect to dashboard or protected route
       alert("Login successful!");
       navigate("/home");
@@ -44,9 +48,7 @@ const LoginForm = () => {
   return (
     <div className="container">
       <div className="login-box">
-        <h1 className="logo">
-        T.M.S
-        </h1>
+        <h1 className="logo">T.M.S</h1>
         <p className="loginName">Login</p>
         <form onSubmit={handleSubmit}>
           <input

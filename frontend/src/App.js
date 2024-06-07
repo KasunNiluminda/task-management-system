@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login"; // Import the Login component
 import Register from "./pages/Register"; // Import the Register component
+import CreateTask from "./pages/CreateTask";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/login" element={<Login />} /> {/* Route for Login page */}
         <Route path="/register" element={<Register />} />   {/* Route for Register page */}
         <Route path="/home" element={<Home />} /> {/* Route for Home page */}
+        <Route path="/createTask" element={<CreateTask />} />
       </Routes>
     </Router>
   );
