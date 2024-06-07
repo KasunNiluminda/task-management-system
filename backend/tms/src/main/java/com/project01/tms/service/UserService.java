@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -41,15 +42,23 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public String findRoleByUsername(String username) {
+    public User findMemberByUsername(String username) {
         // Assuming your user repository has a method to find a user by username
         User user = userRepository.findByUsername(username);
 
         if (user != null) {
 
-            return user.getRole(); // Return the role of the user
+            return user;
         } else {
             return null; // User not found
         }
+    }
+
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

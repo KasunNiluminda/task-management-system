@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -67,15 +68,27 @@ public class UserController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        String role = userService.findRoleByUsername(userDetails.getUsername());
+        User member = userService.findMemberByUsername(userDetails.getUsername());
 
         Map<String, String> response = new HashMap<>();
         response.put("token", jwt);
-        response.put("role", role);
+        response.put("role", String.valueOf(member.getRole()));
+        response.put("memberId", String.valueOf(member.getId()));
         response.put("message", "User authenticated successfully");
 
         logger.info("User authenticated successfully: {}", user.getUsername());
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PostMapping
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+
 }
