@@ -4,8 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -41,12 +41,6 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        // Add the role to the claims
-        String role = userDetails.getAuthorities().stream()
-                .findFirst()
-                .map(authority -> authority.getAuthority())
-                .orElse("");
-        claims.put("role", role);
         return createToken(claims, userDetails.getUsername());
     }
 

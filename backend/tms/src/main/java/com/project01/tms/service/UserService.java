@@ -1,5 +1,6 @@
 package com.project01.tms.service;
 
+import com.project01.tms.dto.UserDTO;
 import com.project01.tms.model.User;
 import com.project01.tms.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -35,7 +36,20 @@ public class UserService {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(Collections.singletonMap("message", "User created successfully."));
     }
+
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public String findRoleByUsername(String username) {
+        // Assuming your user repository has a method to find a user by username
+        User user = userRepository.findByUsername(username);
+
+        if (user != null) {
+
+            return user.getRole(); // Return the role of the user
+        } else {
+            return null; // User not found
+        }
     }
 }

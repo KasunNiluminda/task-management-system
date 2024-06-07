@@ -67,11 +67,7 @@ public class UserController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        // Add role to the response
-        String role = userDetails.getAuthorities().stream()
-                .findFirst()
-                .map(Object::toString)
-                .orElse("");
+        String role = userService.findRoleByUsername(userDetails.getUsername());
 
         Map<String, String> response = new HashMap<>();
         response.put("token", jwt);
